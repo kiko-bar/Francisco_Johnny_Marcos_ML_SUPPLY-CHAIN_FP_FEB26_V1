@@ -29,6 +29,7 @@ from tabulate import tabulate
 import geopandas as gpd
 import matplotlib.pyplot as plt
 import seaborn as sns
+from matplotlib.colors import LinearSegmentedColormap
 
 # ==========================================
 # 4. MACHINE LEARNING - PREPROCESSING
