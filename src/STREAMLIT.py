@@ -144,8 +144,10 @@ if st.button("Analyze Order Risk"):
         
     with col2:
         if prediction == 1:
+            st.markdown("<br>", unsafe_allow_html=True) # Adds a HTML break
             st.error("Status: LATE EXPECTED")
         else:
+            st.markdown("<br>", unsafe_allow_html=True) # Adds a HTML break
             st.success("Status: ON TIME")
     
     with col3:
@@ -195,7 +197,3 @@ if st.button("Analyze Order Risk"):
     else:
         st.success("Optimal Parameters")
         st.write("The parameters are efficient. No changes required.")
-
-
-
-
