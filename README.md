@@ -101,3 +101,18 @@ We evaluated our supervised model based on its ability to identify "Late Risk" b
     ├── __pycache__
     │   └── utils.cpython-312.pyc
     └── utils.py                                             # Feature engineering pipeline
+```
+---
+
+## Technical FAQ (Interview Prep)
+Q: **Why are there no Latitude or Longitude columns in the final models?**
+A: During the EDA phase, we identified significant inaccuracies and missing values in the raw GPS data. To maintain high Data Integrity, we chose to drop these columns and instead use a "Verified Coordinate Lookup" for our Dashboard. This ensures the visual map is accurate without polluting the model with "noisy" geographic features.
+
+Q: **Why does the app prioritize the Supervised Model over the Unsupervised Clusters?**
+A: The K-Means model provides the Strategic Profile (the "personality" of the route), but the Supervised Model provides the Tactical Truth. If a user enters a 1-day promise for a long-haul route, the Supervised model is mathematically more sensitive to that specific risk, so we use it as the final authority for the "Late Risk" status.
+
+Q: **How does the model handle "Outliers" in Price or Benefit?**
+A: We utilize a RobustScaler and a predefined outliers_dict.json. This allows the model to remain stable even if a user enters an unusually high order value, preventing "Extreme Data" from skewing the risk prediction.
+
+Q: **What was the logic behind the feature selection?**
+A: We removed features with a 1.00 correlation (Multicollinearity), such as "Product Price" vs. "Sales," to reduce model complexity. We focused on the "Scheduled Days" vs. "Shipping Mode" relationship, as our heatmap showed these are the primary drivers of late deliveries.
