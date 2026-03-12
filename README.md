@@ -1,72 +1,103 @@
 # DataCo Supply Chain Risk Intelligence
-**Strategic Logistics Analysis & Predictive Modeling**
+**Optimizing Global Logistics: An Intelligent Early-Warning System to Eliminate Delivery Delays.**
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/4GeeksAcademy/Francisco_Johnny_Marcos_ML_SUPPLY-CHAIN_FP_FEB26_V1)
-
-[![Project Status](https://img.shields.io/badge/Status-In--Progress-orange)](#)
+[![Project Status](https://img.shields.io/badge/Status-Completed-brightgreen)](#)
 [![Python](https://img.shields.io/badge/Python-3.10-blue)](https://www.python.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Streamlit](https://img.shields.io/badge/UI-Streamlit-red)](https://streamlit.io/)
 
-## Project Overview
-This project focuses on identifying logistical bottlenecks and predicting delivery risks within the **DataCo Global Supply Chain** dataset. Our team is leveraging advanced Exploratory Data Analysis (EDA) and Machine Learning to transform raw shipping data into actionable business intelligence.
+## Project Mission
+Every late delivery represents a financial penalty and a loss of customer trust. Our team has built a **Proactive Logistics Command Center** that identifies delivery risks at the moment an order is placed, allowing managers to intervene before the shipping process fails.
 
 ### The Team
-Lead Data Visualization & Cleaning, Supervised Learning & Risk Prediction and Unsupervised Clustering & Segmentation.
-* **Francisco (F)**
-* **Johnny (J)**
-* **Marcos (M)**
-
-### Team Collaboration & Strategic Goals
-
-Our workflow is built on a circular feedback loop where EDA insights directly inform model architecture:
-
-| Feature Lead | Primary Strategic Goal | Technical Ownership |
-| :--- | :--- | :--- |
-| **F, J & M** | **Data Integrity & Visualization** | Optimization of high-cardinality features (Zipcodes) and multi-variate correlation analysis to reduce noise. |
-| **F, J & M** | **Predictive Risk Assessment** | Developing a Supervised Random Forest model to minimize 'Late Delivery' overhead for the business. |
-| **F, J & M** | **Strategic Segmentation** | Utilizing Unsupervised K-Means clustering to identify high-value/low-risk regional hubs. |
-
-### Integrated Workflow
-1. **Pre-processing (The Team):** Engineering the `data/processed` layer to ensure consistent scaling and normalization for all models.
-2. **Modeling (The Team):** Implementing both Supervised and Unsupervised approaches to provide a 360-degree view of Supply Chain health.
-3. **Synthesis (The Team):** Combining individual metrics into a unified project dashboard.
+* **Francisco (F)** - Supervised Learning & Lead Logic
+* **Johnny (J)** - Data Architecture & Pre-processing
+* **Marcos (M)** - Unsupervised Clustering & Strategic UI
 
 ---
 
-## Key Discoveries (EDA Phase)
+## Intelligence Architecture: The Dual-Model Approach
+Unlike standard predictors, our system utilizes a **Layered Intelligence** strategy to ensure 360-degree visibility:
 
-### Geographical Concentration
-Through coordinate mapping, we discovered a significant data cluster centered in **Puerto Rico (Caguas)**. This localized concentration is a primary factor in the supply chain's performance metrics.
+1.  **Tactical Predictor (Supervised):** A model trained on 180k+ transactions to calculate the exact **Probability of Delay**. It is highly sensitive to critical scheduling conflicts (e.g., Standard Class shipping with a 1-day promise).
+2.  **Strategic Profiler (Unsupervised):** A K-Means clustering algorithm that identifies the **Historical Logistics Profile** of a route (Optimal, Standard, or Volatile).
 
-### Addressing High Cardinality
-We successfully engineered a solution for high-cardinality features such as `Customer_Zipcode`. By implementing a custom factorization and JSON mapping system, we preserved data integrity while optimizing the dataset for model training.
+**Conflict Resolution Layer:** Our system includes a logic-override that prioritizes real-time probability over historical clusters, ensuring that "Impossible Promises" are flagged even on typically safe routes.
 
-### Multicollinearity Management
-Our correlation analysis identified extreme redundancy in financial metrics (Sales vs. Price vs. Profit). We streamlined the feature set by dropping variables with a **1.00 correlation**, reducing model noise and improving computational efficiency.
+---
 
-## Tech Stack & Directory Structure
-* **Environment**: GitHub Codespaces
-* **Libraries**: Pandas, Seaborn, Matplotlib, Scikit-Learn, Pillow (PIL)
+## Model Evaluation & Performance
+We evaluated our supervised model based on its ability to identify "Late Risk" before it happens. Since a missed late order (False Negative) costs the company money, we prioritized **Recall** and **F1-Score**.
+
+| **Metric** | **Score** | **Business Interpretation** |
+| --- | --- | --- |
+| **Accuracy** | 86.4% | "The overall correctness of our ""Late"" vs ""On-Time"" predictions." |
+| **Recall (Late Class)** | 91.2% | Our ability to catch nearly all at-risk orders before they fail. |
+| **Precision** | 82.5% | "Ensures we aren't ""crying wolf"" and flagging too many safe orders." |
+| **Historical Delta** | +31.7% | Our model's improvement over the 54.7% baseline (random guessing). |
+
+---
+
+## Key Discoveries & Data Strategy
+* **The "Buffer" Secret:** We identified that the #1 predictor of failure is not distance, but the **Scheduling Buffer**. Orders with <2 days of margin have a failure rate nearly double the baseline.
+* **Coordinate Integrity:** During EDA, we discovered inaccuracies in raw GPS data. We pivoted to a **Verified Coordinate Lookup** for major hubs (Aachen, Caguas, Barranquilla) to ensure dashboard reliability.
+* **High Cardinality:** Managed 500+ unique locations using JSON mapping and factorization to maintain model performance without losing geographical context.
+
+---
+
+## Project Structure
+
+| **File Name** | **Role** | **Model Type** | **Implementation** |
+| --- | --- | --- | ---
+| supervised_model_final_boost.pkl | **Risk Predictor** | Random Forest | Calculates the probability (%) of a late delivery. |
+| unsupervised_kmeans_final.pkl | **Profiler** | K-Means | Segments routes into Strategic Risk Clusters. |
+| scaler_WITH_outliers.pkl | **Normalizer** | RobustScaler | "Scales real-time user inputs (Price, Benefit) for the model." |
+| outliers_dict.jso | **Thresholds** | JSON Map | Stores EDA-defined limits to handle extreme input values. |
+
+---
 
 ```text
 .
 ├── README.es.md
 ├── README.md
 ├── data
-│   ├── interim                          # Category mappings and temporary dictionaries
-│   │   ├── categories_preview.png
+│   ├── interim                                              # JSON mappings & visualization exports
 │   │   ├── category_mappings.json
-│   │   ├── heatmap_preview.png
-│   │   └── preview.jpg                  # Project visual overview
-│   ├── processed                        # Cleaned, factorized, and normalized data
-│   └── raw
-│       └── DataCoSupplyChainDataset.csv # Original DataCo dataset
+│   │   └── outliers_dict.json
+│   ├── processed                                            # Normalized X_train/X_test (With/Without Outliers)
+│   │   ├── X_test_WITHOUT_outliers.csv
+│   │   ├── X_test_WITHOUT_outliers_norm.csv
+│   │   ├── X_test_WITHOUT_outliers_scal.csv
+│   │   ├── X_test_WITH_outliers.csv
+│   │   ├── X_test_WITH_outliers_norm.csv
+│   │   ├── X_test_WITH_outliers_scal.csv
+│   │   ├── X_train_WITHOUT_outliers.csv
+│   │   ├── X_train_WITHOUT_outliers_WITH_CLUSTERS.csv
+│   │   ├── X_train_WITHOUT_outliers_norm.csv
+│   │   ├── X_train_WITHOUT_outliers_scal.csv
+│   │   ├── X_train_WITH_outliers.csv
+│   │   ├── X_train_WITH_outliers_norm.csv
+│   │   ├── X_train_WITH_outliers_scal.csv
+│   │   ├── df_final_checkpoint.parquet
+│   │   ├── y_test.csv
+│   │   └── y_train.csv
+│   └── raw                                                  # Original DataCo Dataset
+│       ├── DataCoSupplyChainDataset.csv
+│       └── supply_chain_logistics.db
 ├── learn.json
-├── models                               # Saved .pkl models (Supervised & Unsupervised)
+├── models                                                   # Production-ready .pkl files. Feature scaling & normalization objects
+│   ├── norm_WITHOUT_outliers.pkl
+│   ├── norm_WITH_outliers.pkl
+│   ├── scaler_WITHOUT_outliers.pkl
+│   ├── scaler_WITH_outliers.pkl
+│   ├── supervised_model_final_boost.pkl
+│   └── unsupervised_kmeans_final.pkl
 ├── requirements.txt
 └── src
-    ├── EDA.ipynb                        # Primary EDA & Visualization
-    ├── app.py
-    ├── supply_chain_logistics.db
-    └── utils.py                         # Helper functions
-   
+    ├── EDA.ipynb                                            # Comprehensive EDA & Heatmap Analysis
+    ├── EDA_2.ipynb
+    ├── MODELING.ipynb
+    ├── STREAMLIT.py                                         # Streamlit Command Center (Wide Layout)
+    ├── __pycache__
+    │   └── utils.cpython-312.pyc
+    └── utils.py                                             # Feature engineering pipeline
