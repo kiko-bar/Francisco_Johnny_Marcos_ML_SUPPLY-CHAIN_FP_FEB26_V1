@@ -5,6 +5,8 @@ import os
 import numpy as np
 import pandas as pd
 
+st.set_page_config(page_title="DataCo Risk Predictor", layout="wide")
+
 # 1. Path Setup:
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 MODEL_DIR = os.path.join(BASE_DIR, "..", "models")
