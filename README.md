@@ -31,9 +31,9 @@ We evaluated our supervised model based on its ability to identify "Late Risk" b
 
 | **Metric** | **Score** | **Business Interpretation** |
 | --- | --- | --- |
-| **Accuracy** | 82.4% | "The overall correctness of our ""Late"" vs ""On-Time"" predictions." |
+| **Accuracy** | 82.4% | The overall correctness of our "Late" vs "On-Time" predictions. |
 | **Recall (Late Class)** | 80.0% | Our ability to catch nearly all at-risk orders before they fail. |
-| **Precision** | 87.0% | "Ensures we aren't ""crying wolf"" and flagging too many safe orders." |
+| **Precision** | 87.0% | Ensures we aren't crying wolf and flagging too many safe orders. |
 | **Historical Delta** | +27.7% | Our model's improvement over the 54.7% baseline (random guessing). |
 
 ---
