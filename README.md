@@ -1,5 +1,17 @@
-# DataCo Supply Chain Risk Intelligence
-**Optimizing Global Logistics: An Intelligent Early-Warning System to Eliminate Delivery Delays.**
+# 🚚 DataCo Supply Chain Risk Intelligence
+**A production-ready ML system that scores delivery risk at order placement — catching 4 out of 5 late shipments before they leave the warehouse. Built on 180K+ real supply chain transactions.**
+
+Late deliveries cost logistics companies an average of 1–3% of annual revenue in penalties and customer churn. This system shifts operations teams from reactive firefighting to proactive risk management.
+
+| **Metric** | **Value** |	**Business meaning** |
+| --- | --- | --- |
+| Recall (Late class) |	**80%**	| Catches 4 of every 5 at-risk orders before failure |
+| Precision	| **87%**	| Low false-alarm rate — managers trust the alerts |
+| vs. Baseline | **+27.7pp** | Improvement over random guessing (54.7% baseline) |
+| Training data	| **180K+ orders** | Real DataCo global supply chain transactions |
+| Key predictor | **Scheduling Buffer**	| Orders with <2 day margin have 2× failure rate |
+
+**Tech stack:** Python · XGBoost · K-Means · Streamlit · RobustScaler · Plotly · pandas · scikit-learn · joblib · Render (live deployment)
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/4GeeksAcademy/Francisco_Johnny_Marcos_ML_SUPPLY-CHAIN_FP_FEB26_V1)
 [![Project Status](https://img.shields.io/badge/Status-Completed-brightgreen)](#)
