@@ -11,7 +11,7 @@ Late deliveries cost logistics companies an average of 1–3% of annual revenue 
 | Training data	| **180K+ orders** | Real DataCo global supply chain transactions |
 | Key predictor | **Scheduling Buffer**	| Orders with <2 day margin have 2× failure rate |
 
-**Tech stack:** Python · XGBoost · K-Means · Streamlit · RobustScaler · Plotly · pandas · scikit-learn · joblib · Render (live deployment)
+**🧰 Tech Stack:** Python 3.10 · XGBoost · K-Means · Streamlit · RobustScaler · Plotly · pandas · scikit-learn · joblib · Render (live deployment)
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/4GeeksAcademy/Francisco_Johnny_Marcos_ML_SUPPLY-CHAIN_FP_FEB26_V1)
 [![Project Status](https://img.shields.io/badge/Status-Completed-brightgreen)](#)
